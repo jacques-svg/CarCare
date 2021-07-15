@@ -4,6 +4,7 @@ import '../FadeAnimation.dart';
 import '../SignupScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_overlay_loader/flutter_overlay_loader.dart';
+import 'package:new_version/new_version.dart';
 import 'package:carcare/services/api_manager.dart';
 import 'package:carcare/Screens/home.dart';
 import 'package:carcare/utils/constants.dart';
@@ -16,6 +17,19 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+    super.initState();
+
+    // Instantiate NewVersion manager object (Using GCP Console app as example)
+    final newVersion = NewVersion(
+      iOSId: 'com.google.Vespa',
+      androidId: 'com.example.carcare',
+    );
+
+    newVersion.showAlertIfNecessary(context: context);
+  }
+
   var email;
   var password;
   final _emailController = TextEditingController();
